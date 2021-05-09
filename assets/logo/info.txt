@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: HACKED
+font link: http://watchdogsfont.com
+font author: David Libeau
+font author site: https://davidlibeau.fr/
+
+
+icon designer: Stephen Hemenway
+icon designer link: /stephenhemenway
+        
+{"bg":"#2B282C","icon":"#746657","font":"#ffffff","slogan":"#ffffff"}
+      
