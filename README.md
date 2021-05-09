@@ -4,11 +4,11 @@
 
 ## Created By:
 
-**Name**: [Full Name]
+**Name**: Michael McNees
 
-**Email**: [Email]
+**Email**: mmcnees@student.fullsail.edu
 
-**Slack Username**: [Github Username]
+**GitHub Username**: BSKnuckles
 
 ## Setting up the app
 
