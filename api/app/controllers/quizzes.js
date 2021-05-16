@@ -5,6 +5,11 @@ exports.getAll = (req, res) => {
     res.json(quizzes)
 }
 
+exports.getPublic = (req, res) => {
+    const quizzes = Quizzes.findPublic()
+    res.json(quizzes)
+}
+
 exports.getOneById = (req, res) => {
     const { id } = req.params
     const quiz = Quizzes.findByPk(id)
