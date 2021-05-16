@@ -1,13 +1,24 @@
-// pull in the express package
 const express = require('express')
-// add the logger
 const log = require('debug')('web:logging')
-// add another logger
 const error = require('debug')('web:error')
-// create an express app
-const app = express()
-// set up a folder to hold all the static files
-app.use(express.static('public'))
 
-// export the express app
+const publicRoutes = require('./routes/public')
+
+const API = require('../../api/app')
+const app = express()
+
+app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }))
+app.use(API)
+
+app.set('view engine', 'pug')
+app.set('views', `${__dirname}/views`)
+
+app.use('/', publicRoutes)
+
+app.use((err, req, res, next) => {
+    error('ERROR FOUND:', err)
+    res.sendStatus(500)
+})
+
 module.exports = app
