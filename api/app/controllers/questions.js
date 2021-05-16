@@ -1,7 +1,8 @@
 const { Questions } = require('../models')
 
 exports.getAll = (req, res) => {
-    const questions = Questions.findAll()
+    const { quizId } = req.query
+    const questions = Questions.findByQuiz(quizId)
     res.json(questions)
 }
 
@@ -23,6 +24,7 @@ exports.createQuestion = (req, res) => {
 
 exports.updateQuestion = (req, res) => {
     const { id } = req.params
+    console.log(req.params, req.body)
     const updatedQuestion = Questions.update(req.body, id)
     res.json(updatedQuestion)
 }

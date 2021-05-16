@@ -10,6 +10,7 @@ const authRouter = require('./routes/auth')
 const app = express()
 
 app.use(express.json())
+app.use(express.urlencoded())
 app.use(morganDebug('api:request', 'dev'))
 
 app.use('/quizzes', quizzesRouter)

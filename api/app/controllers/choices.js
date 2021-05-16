@@ -1,7 +1,8 @@
 const { Choices } = require('../models')
 
 exports.getAll = (req, res) => {
-    const choices = Choices.findAll()
+    const { questionId } = req.query
+    const choices = Choices.findByQuestion(questionId)
     res.json(choices)
 }
 

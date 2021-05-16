@@ -37,6 +37,14 @@ class Model {
         return this.values.find(item => item.id === id)
     }
 
+    findByQuiz(id) {
+        return this.values.filter(item => item.quizId === id)
+    }
+
+    findByQuestion(id) {
+        return this.values.filter(item => item.questionId === id)
+    }
+
     findPublic() {
         return this.values.find(item => item.type === 'public')
     }
