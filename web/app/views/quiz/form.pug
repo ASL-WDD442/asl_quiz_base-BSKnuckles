@@ -1,0 +1,19 @@
+extends ../_layout
+include ../_includes/link_mixin
+block content
+    h1.heading= id ? 'Edit Quiz' : 'New Quiz'
+    form.form(method="POST")
+        label.form__label Quiz Name
+            input.form__input(type="text", name="name", value=name)
+        label.form__label
+            span.form__labelInline Quiz Type
+            label.form__labelInline
+                input.form__input__radio(type="radio", name="type", value="public", checked=type === 'public')
+                span Public
+            label.form__labelInline
+                input.form__input__radio(type="radio", name="type", value="private", checked=type === 'private')
+                span Private
+        button.button.active(type="submit")= id ? 'Save Quiz' : 'Create Quiz'
+        if errors
+            for error in errors
+                small.flash=error.msg

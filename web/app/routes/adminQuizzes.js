@@ -1,33 +1,34 @@
-const router = require('express').Router()
-const quizController = require('../controllers/quizController')
-const validationCtrl = require('../controllers/validationController')
-const { route } = require('./public')
+const router = require('express').Router();
+const QuizController = require('../controllers/quizController');
+const ValidationController = require('../controllers/validationController');
 
-// View quiz(zes)
-// router.get('/:id', quizController.renderAdminDetail)
+// My Quizzes
+router.get('/list', QuizController.renderMyQuizzes);
 
-// Admin Views
-//  - Create Quiz
-router.get('/new', quizController.renderDecisionForm)
-router.post('/new', [
-    validationCtrl.validate('createDecisions'),
-    quizController.renderDecisionFormWithErrors,
-    quizController.saveDecision
-])
+// Quiz Detail
+router.get('/:id', QuizController.renderQuizDetail);
+
+//  Create Quiz
+router.get('/new', QuizController.renderQuizForm);
+// router.post('/new', [
+//   validationController.validate('createQuiz'),
+//   quizController.renderQuizFormWithErrors,
+//   quizController.saveQuiz,
+// ]);
 
 // Edit Quiz
-router.get('/edit/:id', quizController.renderEditForm)
-router.post('/edit/:id', [
-    validationCtrl.validate('editDecision'),
-    quizController.renderDecisionFormWithErrors,
-    quizController.saveDecision
-])
+router.get('/edit/:id', QuizController.renderEditForm);
+// router.post('/edit/:id', [
+//   validationController.validate('editQuiz'),
+//   quizController.renderQuizFormWithErrors,
+//   quizController.saveQuiz,
+// ]);
 
 // Delete Quiz
 router.get('/delete/:id', [
-    validationCtrl.validate('deleteDecision'),
-    quizController.goBackOnError,
-    quizController.deleteDecision
-])
+  ValidationController.validate('deleteQuiz'),
+  QuizController.goBackOnError,
+  QuizController.deleteQuiz,
+]);
 
-module.exports = router
+module.exports = router;
