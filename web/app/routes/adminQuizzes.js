@@ -10,19 +10,19 @@ router.get('/:id', QuizController.renderQuizDetail);
 
 //  Create Quiz
 router.get('/new', QuizController.renderQuizForm);
-// router.post('/new', [
-//   validationController.validate('createQuiz'),
-//   quizController.renderQuizFormWithErrors,
-//   quizController.saveQuiz,
-// ]);
+router.post('/new', [
+  ValidationController.validate('createQuiz'),
+  QuizController.renderQuizFormWithErrors,
+  QuizController.saveQuiz,
+]);
 
 // Edit Quiz
 router.get('/edit/:id', QuizController.renderEditForm);
-// router.post('/edit/:id', [
-//   validationController.validate('editQuiz'),
-//   quizController.renderQuizFormWithErrors,
-//   quizController.saveQuiz,
-// ]);
+router.post('/edit/:id', [
+  ValidationController.validate('editQuiz'),
+  QuizController.renderQuizFormWithErrors,
+  QuizController.saveQuiz,
+]);
 
 // Delete Quiz
 router.get('/delete/:id', [

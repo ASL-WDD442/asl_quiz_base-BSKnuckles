@@ -7,20 +7,19 @@ router.get('/:id', QuestionController.renderQuestionDetails);
 
 //  Create Question
 router.get('/new', QuestionController.renderQuestionForm);
-// router.post('/new', [
-//   ValidationController.validate('createQuestion'),
-//   QuestionController.renderQuestionFormWithErrors,
-//   QuestionController.saveQuestion,
-// ]);
+router.post('/new', [
+  ValidationController.validate('createQuestion'),
+  QuestionController.renderQuestionFormWithErrors,
+  QuestionController.saveQuestion,
+]);
 
 // Edit Question
 router.get('/edit/:id', QuestionController.renderEditForm);
-// router.post('/edit/:id', [
-//   ValidationController.validate('editQuestion'),
-//   QuestionController.renderQuestionFormWithErrors,
-//   QuestionController.saveQuestion,
-// ]);
-router.post('/edit/:id', QuestionController.saveQuestion);
+router.post('/edit/:id', [
+  ValidationController.validate('editQuestion'),
+  QuestionController.renderQuestionFormWithErrors,
+  QuestionController.saveQuestion,
+]);
 
 // Delete Question
 router.get('/delete/:id', [

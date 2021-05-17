@@ -1,27 +1,14 @@
 const { check, validationResult } = require('express-validator');
 
 const checks = {
-  id: check('id')
-    .isUUID()
-    .withMessage('ID is not valid, please go back and try again'),
-  title: check('name')
-    .exists()
-    .withMessage('Quiz name is required')
-    .isLength(3)
+  id: check('id').isUUID().withMessage('ID is not valid, please go back and try again'),
+  name: check('name').exists().withMessage('Quiz name is required').isLength(3)
     .withMessage('Quiz name is required to be at least 3 characters'),
-  type: check('type')
-    .exists()
-    .withMessage('Quiz type is required')
-    .isIn(['public', 'private'])
+  type: check('type').exists().withMessage('Quiz type is required').isIn(['public', 'private'])
     .withMessage('Decision must be public or private'),
-  value: check('value')
-    .exists()
-    .withMessage('Question value is required')
-    .isLength(1)
+  value: check('value').exists().withMessage('Question value is required').isLength(1)
     .withMessage('Question value is required'),
-  decisionId: check('quizId')
-    .isUUID()
-    .withMessage('Quiz ID is not valid, please go back and try again'),
+  quizId: check('quizId').isUUID().withMessage('Quiz ID is not valid, please go back and try again'),
 };
 
 const checkForErrors = (req, res, next) => {
