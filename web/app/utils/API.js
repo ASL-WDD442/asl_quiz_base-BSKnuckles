@@ -2,7 +2,7 @@ const axios = require('axios')
 const errorLog = require('debug')('web:error')
 const api = (req, res, next) => {
     const API = axios.create({
-        baseUrl: process.env.API_URL || 'http://localhost:4000'
+        baseURL: process.env.API_URL || 'http://localhost:4000'
     })
 
     API.interceptors.response.use(

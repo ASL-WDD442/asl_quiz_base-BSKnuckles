@@ -46,7 +46,7 @@ class Model {
     }
 
     findPublic() {
-        return this.values.find(item => item.type === 'public')
+        return this.values.filter(item => item.type === 'public')
     }
 
     findAll() {

@@ -15,6 +15,7 @@ app.set('view engine', 'pug')
 app.set('views', `${__dirname}/views`)
 
 app.use('/', publicRoutes)
+app.use('/quiz', publicRoutes)
 
 app.use((err, req, res, next) => {
     error('ERROR FOUND:', err)
