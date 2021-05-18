@@ -1,0 +1,6 @@
+mixin link (url, title, icon = 'fa-eye', className = '')
+    a.link(href=url, class=className)
+        i.fas(class=icon)
+        span
+            | &nbsp;
+            = title

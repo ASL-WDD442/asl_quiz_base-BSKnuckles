@@ -1,37 +1,37 @@
-const router = require('express').Router()
-const { Users } = require('../models/users')
+const router = require('express').Router();
+const { Users } = require('../models/users');
 
-router.get('/', function (req, res) {
-    const users = Users.findAll()
-    res.json(users)
-})
+router.get('/', (req, res) => {
+  const users = Users.findAll();
+  res.json(users);
+});
 
-router.get('/:id', function (req, res) {
-    const { id } = req.params
-    const user = Users.findByPk(id)
-    if (!user) {
-        res.sendStatus(404)
-        return;
-    }
-    res.json(user)
-})
+router.get('/:id', (req, res) => {
+  const { id } = req.params;
+  const user = Users.findByPk(id);
+  if (!user) {
+    res.sendStatus(404);
+    return;
+  }
+  res.json(user);
+});
 
-router.post('/', function (req, res) {
-    const { username, password } = req.body
-    const id = Users.create({ username, password })
-    res.json({id})
-})
+router.post('/', (req, res) => {
+  const { username, password } = req.body;
+  const id = Users.create({ username, password });
+  res.json({ id });
+});
 
-router.put('/', function (req, res) {
-    const { id } = req.params
-    const updatedUser = Users.update(req.body, id)
-    res.json(updatedUser)
-})
+router.put('/', (req, res) => {
+  const { id } = req.params;
+  const updatedUser = Users.update(req.body, id);
+  res.json(updatedUser);
+});
 
-router.delete('/:id', function (req, res) {
-    const { id } = req.params
-    Users.destroy(id)
-    res.sendStatus(200)
-})
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+  Users.destroy(id);
+  res.sendStatus(200);
+});
 
-module.exports = router
+module.exports = router;

@@ -1,0 +1,20 @@
+.list {
+  border: 1px solid var(--border-color);
+  border-top: none;
+  background-color: var(--secondary-background-color);
+  padding: 0;
+}
+
+.list__item {
+  display: flex;
+  flex-direction: row;
+  padding: 20px 20px;
+  border-top: 1px solid var(--border-color);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list__item__title {
+  font-size: 20px;
+  flex-grow: 2;
+}

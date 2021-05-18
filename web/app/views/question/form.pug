@@ -1,0 +1,12 @@
+extends ../_layout
+include ../_includes/link_mixin
+block content
+    h1.heading= id ? 'Edit Question' : 'New Question'
+    form.form(method="POST")
+        label.form__label Question Title
+            input.form__input(type="text", name="title", value=title)
+        input(type="hidden", name="quizId", value=quizId, id="quizId")
+        button.button.active(type="submit")= id ? 'Save Question' : 'Create Question'
+        if errors
+            for error in errors
+                small.flash=error.msg
