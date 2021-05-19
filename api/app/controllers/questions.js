@@ -39,8 +39,6 @@ exports.updateQuestion = async (req, res) => {
     const errors = e.errors.map((err) => err.message);
     res.sendStatus(400).json({ errors });
   }
-  const updatedQuestion = Questions.update(req.body, id);
-  res.json(updatedQuestion);
 };
 
 exports.deleteQuestion = async (req, res) => {

@@ -14,6 +14,8 @@ block content
                 for choice in choices
                     li.list__item
                         span.list__item__title= choice.value
-                        +link('/admin/choices/'+choice.id, 'View', 'fa-eye', 'link')
-                        +link('/admin/choices/delete/'+choice.id, 'Delete', 'fa-trash', 'link linkSecondary')
+                        div.list__item__footer
+                            +link('/admin/choices/'+choice.id, 'View', 'fa-eye', 'link')
+                            +link('/admin/choices/edit/'+choice.id, 'Edit', 'fa-edit', 'link')
+                            +link('/admin/choices/delete/'+choice.id, 'Delete', 'fa-trash', 'link linkSecondary')
             +link('/admin/choices/new/?questionId='+question.id, 'Add a new choice', '', 'button primary')

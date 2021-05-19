@@ -5,21 +5,47 @@ exports.renderLanding = async (req, res) => {
 
 exports.renderQuiz = async (req, res) => {
   const { id } = req.params;
+  const rawQuestions = await req.API.get(`/questions?quizId=${id}`);
+  const questions = [];
+  rawQuestions.forEach(async (question) => {
+    const choices = await req.API.get(`/choices?questionId=${question.id}`);
+    const questionObj = {
+      id: question.id,
+      title: question.title,
+      choices,
+    };
+    questions.push(questionObj);
+  });
   const quiz = await req.API.get(`/quizzes/${id}`);
-  res.render('quiz/index', { quiz });
+  res.render('quiz/index', { quiz, questions });
 };
 
 exports.renderQuizDetail = async (req, res) => {
   const { id } = req.params;
-  const { name, type } = await req.API.get(`/quizzes/${id}`);
-  const questions = await req.API.get(`/questions?quizId=${id}`);
-  res.render('quiz/index', { name, type, questions });
+  const rawQuestions = await req.API.get(`/questions?quizId=${id}`);
+  const questions = [];
+  rawQuestions.forEach(async (question) => {
+    const choices = await req.API.get(`/choices?questionId=${question.id}`);
+    const questionObj = {
+      id: question.id,
+      title: question.title,
+      choices,
+    };
+    questions.push(questionObj);
+  });
+  const data = {
+    quiz: await req.API.get(`/quizzes/${id}`),
+    questions,
+  };
+  // const quiz = await req.API.get(`/quizzes/${id}`);
+  // const questions = await req.API.get(`/questions?quizId=${id}`);
+  res.render('quiz/detail', data);
 };
 
 exports.renderMyQuizzes = async (req, res) => {
-  const { userId } = req.query;
-  const quizzes = await req.API.get(`/quizzes?userId=${userId}`);
-  console.log(await req.API.get(`/quizzes?userId=${userId}`));
+  // const { userId } = req.query;
+  // const quizzes = await req.API.get(`/quizzes?userId=${userId}`);
+  const quizzes = await req.API.get('/quizzes?userId=24a1fa46-c928-46c9-b578-78a415963200');
   res.render('quiz/user', { quizzes });
 };
 
@@ -41,13 +67,12 @@ exports.renderEditForm = async (req, res) => {
 exports.saveQuiz = async (req, res) => {
   const { name, type } = req.body;
   const { id } = req.params;
-  let data = {};
   if (id) {
-    data = await req.API.put(`/quizzes/${id}`, { name, type });
+    await req.API.put(`/quizzes/${id}`, { name, type });
   } else {
-    data = await req.API.post('/quizzes', { name, type });
+    await req.API.post('/quizzes', { name, type });
   }
-  res.redirect(`/admin/quizzes/edit/${data.id}`);
+  res.redirect('/admin/quizzes/list');
 };
 
 exports.goBackOnError = (errors, req, res, next) => {

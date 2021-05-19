@@ -13,14 +13,14 @@ module.exports = {
       type: {
         type: Sequelize.ENUM('public', 'private'),
       },
-      // userId: {
-      //   type: Sequelize.UUID,
-      //   onDelete: 'CASCADE',
-      //   references: {
-      //     model: 'Users',
-      //     key: 'id',
-      //   },
-      // },
+      userId: {
+        type: Sequelize.UUID,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Users',
+          key: 'id',
+        },
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

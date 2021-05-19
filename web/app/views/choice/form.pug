@@ -1,19 +1,20 @@
 extends ../_layout
 include ../_includes/link_mixin
 block content
-    h1.heading= id ? 'Edit Choice' : 'New Choice'
+    h1.heading= value ? 'Edit Choice' : 'New Choice'
     form.form(method="POST")
         label.form__label Choice Value
             input.form__input(type="text", name="value", value=value)
         label.form__label
             span.form__labelInline Choice Type
             label.form__labelInline
-                input.form__input__radio(type="radio", name="type", value="correct", checked=type === 'correct')
+                input.form__input__radio(type="radio", name="correct", value="correct", checked=correct === 'correct')
                 span Correct
             label.form__labelInline
-                input.form__input__radio(type="radio", name="type", value="incorrect", checked=type === 'incorrect')
+                input.form__input__radio(type="radio", name="correct", value="incorrect", checked=correct === 'incorrect')
                 span Incorrect
-        button.button.active(type="submit")= id ? 'Save Choice' : 'Create Choice'
+        input(type="hidden", name="questionId", value=questionId, id="questionId")
+        button.button.active(type="submit")= value ? 'Save Choice' : 'Create Choice'
         if errors
             for error in errors
                 small.flash=error.msg

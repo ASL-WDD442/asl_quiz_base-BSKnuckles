@@ -66,6 +66,7 @@ h2 {
 	padding: 10px 40px;
 	text-decoration: none;
 	text-transform: uppercase;
+	background: var(--active-color);
 	color: var(--light-text-color);
 	border: none;
 	outline: none;

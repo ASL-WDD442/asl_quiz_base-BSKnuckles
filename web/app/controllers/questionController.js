@@ -17,20 +17,19 @@ exports.renderQuestionFormWithErrors = (errors, req, res, next) => {
 
 exports.renderEditForm = async (req, res) => {
   const { id } = req.params;
-  const { title, type, quizId } = await req.API.get(`/questions/${id}`);
-  res.render('question/form', { title, type, quizId });
+  const question = await req.API.get(`/questions/${id}`);
+  res.render('question/form', question);
 };
 
 exports.saveQuestion = async (req, res) => {
-  const { title, quizId } = req.body;
+  const question = req.body;
   const { id } = req.params;
-  let data = {};
   if (id) {
-    data = await req.API.put(`/questions/${id}`, { title, quizId });
+    await req.API.put(`/questions/${id}`, question);
   } else {
-    data = await req.API.post('/questions', { title, quizId });
+    await req.API.post('/questions', question);
   }
-  res.redirect(`/admin/questions/edit/${data.id}`);
+  res.redirect('/admin/quizzes/list');
 };
 
 exports.goBackOnError = (errors, req, res, next) => {

@@ -12,5 +12,5 @@ block content
         for quiz in quizzes
             li.list__item
                 span.list__item__title= quiz.name
-                +link('/quiz/'+quiz.id, 'View', 'fa-eye')
+                +link('/quizzes/'+quiz.id, 'View', 'fa-eye')
     +link('/admin/quizzes/new', 'Create Your Own Quiz', '', 'button primary')

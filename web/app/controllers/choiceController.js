@@ -5,30 +5,35 @@ exports.renderChoiceDetails = async (req, res) => {
 };
 
 exports.renderChoiceForm = async (req, res) => {
-  res.render('choice/form', { value: '', type: 'private' });
+  const { questionId } = req.query;
+  res.render('choice/form', { value: '', type: 'private', questionId });
 };
 
 exports.renderChoiceFormWithErrors = (errors, req, res, next) => {
-  const { value, type } = req.body;
-  res.render('choice/form', { value, type, errors });
+  const { questionId } = req.query;
+  const { value, correct } = req.body;
+  res.render('choice/form', {
+    value, correct, questionId, errors,
+  });
 };
 
 exports.renderEditForm = async (req, res) => {
   const { id } = req.params;
   const { value, type, questionId } = await req.API.get(`/choices/${id}`);
-  res.render('choice/form', { value, type, questionId });
+  const correct = type;
+  res.render('choice/form', { value, correct, questionId });
 };
 
 exports.saveChoice = async (req, res) => {
-  const { value, quizId } = req.body;
+  const { value, correct, questionId } = req.body;
+  const type = correct;
   const { id } = req.params;
-  let data = {};
   if (id) {
-    data = await req.API.put(`/choices/${id}`, { value, quizId });
+    req.API.put(`/choices/${id}`, { value, type, questionId });
   } else {
-    data = await req.API.post('/choices', { value, quizId });
+    await req.API.post('/choices', { value, type, questionId });
   }
-  res.redirect(`/admin/choices/edit/${data.id}`);
+  res.redirect(`/admin/questions/${questionId}`);
 };
 
 exports.goBackOnError = (errors, req, res, next) => {
