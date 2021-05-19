@@ -1,29 +1,24 @@
 const { Quizzes } = require('../models');
 
-exports.getAll = (req, res) => {
+exports.getAll = async (req, res) => {
   let quizzes = [];
   const { userId } = req.query;
   if (!userId) {
-    quizzes = Quizzes.findAll();
+    quizzes = await Quizzes.findAll();
   } else {
-    quizzes = Quizzes.findByUser(userId);
+    quizzes = await Quizzes.findAll({ where: { userId } });
   }
   res.json(quizzes);
 };
 
-exports.getPublic = (req, res) => {
-  const quizzes = Quizzes.findPublic();
+exports.getPublic = async (req, res) => {
+  const quizzes = await Quizzes.findAll({ where: { type: 'public' } });
   res.json(quizzes);
 };
 
-exports.getAllByUser = (req, res) => {
-  const quizzes = Quizzes.filterByUser();
-  res.json(quizzes);
-};
-
-exports.getOneById = (req, res) => {
+exports.getOneById = async (req, res) => {
   const { id } = req.params;
-  const quiz = Quizzes.findByPk(id);
+  const quiz = await Quizzes.findByPk(id);
   if (!quiz) {
     res.sendStatus(404);
     return;
@@ -31,20 +26,33 @@ exports.getOneById = (req, res) => {
   res.json(quiz);
 };
 
-exports.createQuiz = (req, res) => {
-  const { name, type } = req.body;
-  const id = Quizzes.create({ name, type });
-  res.json({ id });
+exports.createQuiz = async (req, res) => {
+  const { name, type, userId } = req.body;
+  try {
+    const newQuiz = await Quizzes.create({ name, type, userId });
+    res.json({ id: newQuiz.id });
+  } catch (e) {
+    const errors = e.errors.map((err) => err.message);
+    res.sendStatus(400).json({ errors });
+  }
 };
 
-exports.updateQuiz = (req, res) => {
+exports.updateQuiz = async (req, res) => {
   const { id } = req.params;
-  const updatedQuiz = Quizzes.update(req.body, id);
-  res.json(updatedQuiz);
+  try {
+    const [, [updatedQuiz]] = await Quizzes.update(req.body, {
+      where: { id },
+      returning: true,
+    });
+    res.json(updatedQuiz);
+  } catch (e) {
+    const errors = e.errors.map((err) => err.message);
+    res.sendStatus(400).json({ errors });
+  }
 };
 
-exports.deleteQuiz = (req, res) => {
+exports.deleteQuiz = async (req, res) => {
   const { id } = req.params;
-  Quizzes.destroy(id);
+  await Quizzes.destroy({ where: { id } });
   res.sendStatus(200);
 };
