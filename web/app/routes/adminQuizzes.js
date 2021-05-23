@@ -5,9 +5,6 @@ const ValidationController = require('../controllers/validationController');
 // My Quizzes
 router.get('/list', QuizController.renderMyQuizzes);
 
-// Quiz Detail
-router.get('/:id', QuizController.renderQuizDetail);
-
 //  Create Quiz
 router.get('/new', QuizController.renderQuizForm);
 router.post('/new', [
@@ -15,6 +12,9 @@ router.post('/new', [
   QuizController.renderQuizFormWithErrors,
   QuizController.saveQuiz,
 ]);
+
+// Quiz Detail
+router.get('/:id', QuizController.renderQuizDetail);
 
 // Edit Quiz
 router.get('/edit/:id', QuizController.renderEditForm);

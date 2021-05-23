@@ -82,5 +82,5 @@ exports.goBackOnError = (errors, req, res, next) => {
 exports.deleteQuiz = async (req, res) => {
   const { id } = req.params;
   await req.API.delete(`/quizzes/${id}`);
-  res.redirect('/');
+  res.redirect('/admin/quizzes/list');
 };

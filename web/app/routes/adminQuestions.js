@@ -2,9 +2,6 @@ const router = require('express').Router();
 const QuestionController = require('../controllers/questionController');
 const ValidationController = require('../controllers/validationController');
 
-// Question Detail
-router.get('/:id', QuestionController.renderQuestionDetails);
-
 //  Create Question
 router.get('/new', QuestionController.renderQuestionForm);
 router.post('/new', [
@@ -12,6 +9,9 @@ router.post('/new', [
   QuestionController.renderQuestionFormWithErrors,
   QuestionController.saveQuestion,
 ]);
+
+// Question Detail
+router.get('/:id', QuestionController.renderQuestionDetails);
 
 // Edit Question
 router.get('/edit/:id', QuestionController.renderEditForm);
