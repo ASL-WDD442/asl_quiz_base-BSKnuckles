@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const choicesController = require('../controllers/choices');
+const protectedRoute = require('../utils/protectedRoute');
 
 router.get('/', choicesController.getQuestionChoices);
 router.get('/:id', choicesController.getOneById);
-router.post('/', choicesController.createChoice);
-router.put('/:id', choicesController.updateChoice);
-router.delete('/:id', choicesController.deleteChoice);
+router.post('/', protectedRoute, choicesController.createChoice);
+router.put('/:id', protectedRoute, choicesController.updateChoice);
+router.delete('/:id', protectedRoute, choicesController.deleteChoice);
 
 module.exports = router;

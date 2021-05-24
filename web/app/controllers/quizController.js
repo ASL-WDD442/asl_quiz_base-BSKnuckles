@@ -37,15 +37,11 @@ exports.renderQuizDetail = async (req, res) => {
     quiz: await req.API.get(`/quizzes/${id}`),
     questions,
   };
-  // const quiz = await req.API.get(`/quizzes/${id}`);
-  // const questions = await req.API.get(`/questions?quizId=${id}`);
   res.render('quiz/detail', data);
 };
 
 exports.renderMyQuizzes = async (req, res) => {
-  // const { userId } = req.query;
-  // const quizzes = await req.API.get(`/quizzes?userId=${userId}`);
-  const quizzes = await req.API.get('/quizzes?userId=24a1fa46-c928-46c9-b578-78a415963200');
+  const quizzes = await req.API.get(`/quizzes?userId=${req.session}`);
   res.render('quiz/user', { quizzes });
 };
 

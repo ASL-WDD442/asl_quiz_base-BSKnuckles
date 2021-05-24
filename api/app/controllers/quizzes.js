@@ -1,13 +1,7 @@
 const { Quizzes } = require('../models');
 
 exports.getAll = async (req, res) => {
-  let quizzes = [];
-  const { userId } = req.query;
-  if (!userId) {
-    quizzes = await Quizzes.findAll();
-  } else {
-    quizzes = await Quizzes.findAll({ where: { userId } });
-  }
+  const quizzes = await Quizzes.findAll({ where: { userId: req.userId } });
   res.json(quizzes);
 };
 
@@ -27,9 +21,9 @@ exports.getOneById = async (req, res) => {
 };
 
 exports.createQuiz = async (req, res) => {
-  const { name, type, userId } = req.body;
+  const { name, type } = req.body;
   try {
-    const newQuiz = await Quizzes.create({ name, type, userId });
+    const newQuiz = await Quizzes.create({ name, type, userId: req.userId });
     res.json({ id: newQuiz.id });
   } catch (e) {
     const errors = e.errors.map((err) => err.message);

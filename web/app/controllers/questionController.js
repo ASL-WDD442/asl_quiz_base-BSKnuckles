@@ -29,7 +29,7 @@ exports.saveQuestion = async (req, res) => {
   } else {
     await req.API.post('/questions', question);
   }
-  res.redirect('/admin/quizzes/list');
+  res.redirect(`/admin/quizzes/${question.quizId}`);
 };
 
 exports.goBackOnError = (errors, req, res, next) => {

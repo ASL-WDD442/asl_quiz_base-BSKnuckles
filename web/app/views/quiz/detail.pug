@@ -4,7 +4,6 @@ block content
     div.heading
         span= quiz.name
         span
-            +link('/quiz/'+quiz.id, 'View', 'fa-eye', 'link')
             +link('/admin/quizzes/edit/'+quiz.id, 'Edit', 'fa-edit', 'link')
             +link('/admin/quizzes/delete/'+quiz.id, 'Delete', 'fa-trash', 'link linkSecondary')
         

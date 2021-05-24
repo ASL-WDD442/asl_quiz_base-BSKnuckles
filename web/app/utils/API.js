@@ -13,6 +13,16 @@ const api = (req, res, next) => {
     },
   );
 
+  API.interceptors.request.use(async (config) => {
+    const { token } = req.session;
+    if (!token) return config;
+
+    return {
+      ...config,
+      headers: { common: { token } },
+    };
+  });
+
   req.API = API;
   next();
 };
