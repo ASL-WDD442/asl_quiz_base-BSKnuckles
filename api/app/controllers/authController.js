@@ -59,12 +59,10 @@ exports.loginUser = async (req, res) => {
         const token = jwt.sign({ id: user.id }, process.env.SECRET);
         res.json({ token, loggedIn: true });
       } else {
-        console.log('API: Invalid credentials');
         res.json({ loggedIn: false, error: 'Invalid credentials!' });
       }
     });
   } else {
-    console.log('API: No user found');
     res.json({ loggedIn: false, error: 'No user found!' });
   }
 };
