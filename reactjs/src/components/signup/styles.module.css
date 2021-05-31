@@ -1,0 +1,56 @@
+.heading {
+	font-family: var(--secondary-font-family);
+	font-weight: 400;
+	font-size: 2.5em;
+	line-height: 1.25em;
+	color: var(--primary-color);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+}
+
+.form__label {
+  color: var(--primary-color);
+  display: block;
+  margin: 0 0 1rem 0;
+  cursor: pointer;
+}
+
+.form__label span {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form__input {
+  font-size: 16px;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 10px 10px;
+  transition: all 0.2s ease-in-out;
+  border-radius: 3px;
+  box-shadow: 0 0 3px 1px var(--active-color);
+  opacity: 0.65;
+  -webkit-appearance: none !important;
+  outline: none;
+  border: none;
+}
+
+.form__input:focus {
+  opacity: 1;
+  box-shadow: 0 0 3px 1px var(--active-color);
+}
+
+.flash {
+  text-align: center;
+  color: var(--error-color);
+  text-transform: uppercase;
+}
+
+.button {
+  composes: button from '../../brand.css';
+}
