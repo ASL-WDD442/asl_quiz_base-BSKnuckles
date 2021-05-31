@@ -1,0 +1,12 @@
+@import url('https://use.fontawesome.com/releases/v5.6.3/css/all.css');
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

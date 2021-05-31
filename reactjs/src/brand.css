@@ -1,0 +1,119 @@
+/* https://coolors.co/2b282c-746657-ffffff-3f88c5-44bba4-6d72c3-c46262 */
+
+:root {
+	--active-color: #3f88c5;
+	--primary-color: #746657;
+	--secondary-color: #2b282c;
+	--text-color: #ffffff;
+	--light-text-color: #ffffff;
+	--background-color: #2b282c;
+	--border-color: #746657;
+	--secondary-background-color: #ffffff;
+	--error-color: #c46262;
+}
+
+.active {
+	background-color: var(--active-color);
+}
+
+.active__text {
+	color: var(--active-color);
+}
+
+.primary {
+	background-color: var(--primary-color);
+}
+
+.primary__text {
+	color: var(--primary-color);
+}
+
+.secondary {
+	background-color: var(--secondary-color);
+}
+
+.secondary__text {
+	color: var(--secondary-color);
+}
+
+.text {
+	color: var(--text-color);
+}
+
+.background {
+	background-color: var(--background-color);
+}
+
+.border {
+	border: 1px solid var(--border-color);
+}
+
+.error {
+	background-color: var(--error-color);
+}
+
+.error__text {
+	color: var(--error-color);
+}
+
+h2 {
+	line-height: normal;
+}
+
+.heading {
+	font-family: var(--secondary-font-family);
+	font-weight: 400;
+	font-size: 2.5em;
+	line-height: 1.25em;
+	color: var(--primary-color);
+}
+
+.headingSecondary {
+	font-family: var(--secondary-font-family);
+	font-weight: 400;
+	font-size: 2em;
+	color: var(--secondary-color);
+}
+
+.link {
+	font-family: var(--secondary-font-family);
+	font-size: 14px;
+	line-height: 1em;
+	display: inline-block;
+	margin: 0 10px;
+	padding: 4px 5px;
+	text-decoration: none;
+	text-transform: uppercase;
+	color: var(--active-color);
+	border: none;
+	border-bottom: 1px solid var(--active-color);
+	outline: none;
+	background: none;
+}
+
+.fas {
+	margin-right: 0.5em;
+}
+
+.link:hover {
+	opacity: 0.6;
+}
+
+.linkSecondary {
+	color: var(--primary-color);
+	border-color: var(--primary-color);
+}
+
+.button {
+	font-family: var(--secondary-font-family);
+	font-size: 18px;
+	display: inline-block;
+	margin: 20px auto;
+	padding: 10px 40px;
+	text-decoration: none;
+	text-transform: uppercase;
+	background: var(--active-color);
+	color: var(--light-text-color);
+	border: none;
+	outline: none;
+}
