@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import RRPropTypes from 'react-router-prop-types';
 import styles from '../styles.module.css';
+import Link from '../../link';
 import ChoiceContainer from '../../../containers/choice';
 
 class ChoiceForm extends React.Component {
@@ -38,13 +39,23 @@ class ChoiceForm extends React.Component {
     history.push(`/admin/questions/${questionId}`);
   }
 
+  delete = async () => {
+    const { deleteChoice, choice: { id } } = this.props;
+    await deleteChoice(id);
+  }
+
   render() {
-    const { choice: { id, value: defaultValue = '', type: defaultType = 'correct' } } = this.props;
+    const { choice: { id, value: defaultValue = '', type: defaultType = 'correct', questionId } } = this.props;
     const { value = defaultValue, type = defaultType } = this.state;
 
     return(
       <>
         <h1 className={styles.heading}>{id ? 'Edit Choice' : 'New Choice'}</h1>
+        {id && (
+          <span onClick={this.delete}>
+            <Link url={`/admin/questions/${questionId}`} title="Delete Choice" icon="fa-trash" className="link linkSecondary" />
+          </span>
+        )}
         <form method="POST" className={styles.form} onSubmit={this.save}>
           <label className={styles.form__label} htmlFor="value">Choice Value
             <input
@@ -95,6 +106,7 @@ ChoiceForm.propTypes = {
     type: PropTypes.string,
   }),
   saveChoice: PropTypes.func.isRequired,
+  deleteChoice: PropTypes.func.isRequired,
   fetchChoice: PropTypes.func.isRequired,
   history: RRPropTypes.history.isRequired,
   match: RRPropTypes.match.isRequired,

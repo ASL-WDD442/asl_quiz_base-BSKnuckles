@@ -21,6 +21,10 @@ export default function container(Component) {
       return API.post('/choices', choice);
     }
 
+    deleteChoice = async (id) => {
+      await API.delete(`/choices/${id}`);
+    }
+
     render() {
       const { choice } = this.state;
       return (
