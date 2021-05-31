@@ -1,6 +1,7 @@
 const error = require('debug')('api:error');
 const express = require('express');
 const morganDebug = require('morgan-debug');
+const cors = require('cors');
 
 const quizzesRouter = require('./routes/quizzes');
 const questionsRouter = require('./routes/questions');
@@ -12,6 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morganDebug('api:request', 'dev'));
+app.use(cors());
 
 app.use('/quizzes', quizzesRouter);
 app.use('/questions', questionsRouter);
