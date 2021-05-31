@@ -66,7 +66,6 @@ QuestionForm.propTypes = {
   question: PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
-    quizId: PropTypes.string.isRequired
   }),
   saveQuestion: PropTypes.func.isRequired,
   fetchQuestion: PropTypes.func.isRequired,
