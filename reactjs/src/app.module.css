@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+:root {
+	--default-font-family: Helvetica, sans-serif;
+	--secondary-font-family: 'Nunito', sans-serif;
+	--default-font: 200 18px/1.25em var(--default-font-family);
+}
+
+html {
+	font: var(--default-font);
+}
+
+body {
+	margin: 0;
+}
+
+.main__container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-grow: 5;
+}
