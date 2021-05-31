@@ -1,0 +1,18 @@
+extends ../_layout
+block content
+    h1 Login
+    form.form(method="POST")
+        label.form__label Email
+            input.form__input(type="email", name="email")
+        label.form__label Password
+            input.form__input(type="password", name="password")
+        button.button.active(type="submit") Login
+    div
+        h2 Social Login
+        a.button(href="/login/google")
+            i.fab.fa-google
+            span &nbsp; Login with Google
+    div
+        if errors
+            for error in errors
+                small.flash=error.msg

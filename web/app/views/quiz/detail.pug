@@ -1,0 +1,20 @@
+extends ../_layout
+include ../_includes/link_mixin
+block content
+    div.heading
+        span= quiz.name
+        span
+            +link('/admin/quizzes/edit/'+quiz.id, 'Edit', 'fa-edit', 'link')
+            +link('/admin/quizzes/delete/'+quiz.id, 'Delete', 'fa-trash', 'link linkSecondary')
+        
+        div
+            h2.headingSecondary Questions
+            ul.list
+                for question in questions
+                    li.list__item
+                        span.list__item__title= question.title
+                        div.list__item_footer
+                            +link('/admin/questions/'+question.id, 'View', 'fa-eye', 'link')
+                            +link('/admin/questions/edit/'+question.id, 'Edit', 'fa-edit', 'link')
+                            +link('/admin/questions/delete/'+question.id, 'Delete', 'fa-trash', 'link linkSecondary')
+            +link('/admin/questions/new?quizId='+quiz.id, 'Add a new question', '', 'button primary')

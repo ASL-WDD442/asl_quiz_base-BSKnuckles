@@ -1,0 +1,11 @@
+extends ../_layout
+block content
+    h1 Sign Up
+    form.form(method="POST")
+        label.form__label Name
+            input.form__input(type="text", name="name")
+        label.form__label Email
+            input.form__input(type="email", name="email")
+        label.form__label Password
+            input.form__input(type="password", name="password")
+        button.button.active(type="submit") Sign Up

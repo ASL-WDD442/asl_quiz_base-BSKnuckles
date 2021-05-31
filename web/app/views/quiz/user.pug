@@ -1,0 +1,15 @@
+extends ../_layout
+include ../_includes/link_mixin
+block content
+    h1.heading My Quizzes
+    if quizzes
+        ul.list
+            for quiz in quizzes
+                li.list__item
+                    span.list__item__title= quiz.name
+                    div.list__item__footer
+                        +link('/quizzes/'+quiz.id, 'Quiz View', 'fa-globe')
+                        +link('/admin/quizzes/'+quiz.id, 'Details', 'fa-eye')
+                        +link('/admin/quizzes/edit/'+quiz.id, 'Edit', 'fa-edit')
+                        +link('/admin/quizzes/delete/'+quiz.id, 'Delete', 'fa-trash', 'link linkSecondary')
+    +link('/admin/quizzes/new', 'Create Your Own Quiz', '', 'button primary')

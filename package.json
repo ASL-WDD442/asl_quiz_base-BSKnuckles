@@ -1,0 +1,28 @@
+{
+  "name": "guitar-enigma",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently --raw \"npm run api\" \"npm run web\"",
+    "api": "cd api; nodemon server.js",
+    "web": "cd web; nodemon server.js",
+    "prepare": "husky install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^6.1.0",
+    "eslint": "^7.25.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "husky": "^6.0.0",
+    "lint-staged": "^10.5.4",
+    "nodemon": "^2.0.7"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix"
+  }
+}

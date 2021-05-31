@@ -1,0 +1,13 @@
+extends ../_layout
+include ../_includes/link_mixin
+block content
+    h1.heading= quiz.name
+    div
+            h2.headingSecondary Questions
+            ul.list
+                for question in questions
+                    li.list__item
+                        span.list__item__title= question.title
+                        div.list__buttons__row
+                            for choice in question.choices
+                                button.button.active= choice.value

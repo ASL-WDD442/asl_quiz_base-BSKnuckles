@@ -1,0 +1,8 @@
+{
+    "env": {
+        "DEBUG": "api:*",
+        "SECRET": "1xYqwumpMy3IlX2I5UAu",
+        "CLIENT_ID": "371850299121-acoov2pbfccs4kitvmrm1u813844oj5n.apps.googleusercontent.com",
+        "CLIENT_SECRET": "GTLrcUPtl0V4KGnw56mrI3d8"
+    }
+}
